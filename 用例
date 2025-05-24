@@ -1,0 +1,37 @@
+%% Mermaid语法生成的用例图（可直接复制到支持Mermaid的编辑器，如GitHub/VSCode）
+usecaseDiagram
+    title 移动办公系统用例图
+    left to right direction
+
+    actor Employee as "员工"
+    actor Approver as "审批人"
+    actor Admin as "管理员"
+
+    rectangle "移动办公系统" {
+        (上传文件) as UC1
+        (在线编辑文件) as UC2
+        (下载文件) as UC3
+        (发起审批流程) as UC4
+        (处理审批) as UC5
+        (查看审批状态) as UC6
+        (每日打卡) as UC7
+        (查询考勤记录) as UC8
+        (管理用户权限) as UC9
+        (系统配置维护) as UC10
+
+        Employee --> UC1 : <<include>>\n(需登录)
+        Employee --> UC2 : 实时协作
+        Employee --> UC3
+        Employee --> UC4 : <<extend>>\n(可附加文件)
+        Employee --> UC7 : GPS定位
+        Employee --> UC8
+        Approver --> UC5 : 审批动作
+        Approver --> UC6
+        Admin --> UC9 : 角色分配
+        Admin --> UC10
+
+        UC4 ..> UC1 : <<include>>\n(需上传文件)
+        UC5 ..|> UC6 : <<extend>>\n(完成后更新状态)
+    }
+
+    note right of Admin: 系统管理员专属功能\n其他角色无权访问
